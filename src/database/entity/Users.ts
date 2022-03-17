@@ -1,17 +1,20 @@
 import { IsDefined } from 'class-validator'
 import { Field, ObjectType, Root } from 'type-graphql'
 import { Entity, Column, ObjectIdColumn, BaseEntity, ObjectID } from "typeorm"
-
-
+import { Address } from './Address'
+import { ForeignId } from './ForeignId'
 
 
 @ObjectType()
 @Entity("Users")
 export class User extends BaseEntity {
 
-
   @ObjectIdColumn()
   _id: ObjectID
+
+  @Field(() => ForeignId, { nullable: true })
+  @Column()
+  foreignIds: ForeignId[]
 
   @Field({ nullable: true })
   @Column()
@@ -37,24 +40,22 @@ export class User extends BaseEntity {
   @IsDefined()
   password: string
 
+  @Field({ nullable: true })
+  @Column()
+  phone: string
 
+  @Field({ nullable: true })
+  @Column()
+  profile_picture: string
 
-  // phone: { type: String, required: true },
-  // address: {
-  //   zipcode: { type: String, required: false },
-  //   street: { type: String, required: false },
-  //   houseNumber: { type: Number, required: false },
-  //   district: { type: String, required: false },
-  //   city: { type: String, required: false },
-  //   state: { type: String, required: false },
-  //   reference: { type: String, required: false },
-  // },
-  // password: { type: String, required: false },
-  // role: { type: String, default: 'customer' },
+  @Field({ nullable: true })
+  @Column()
+  role: string
 
-  @Column("bool", { default: false })
+  @Field(() => Address, { nullable: true })
+  @Column()
+  address: Address
+
+  @Column("boolean", { default: false })
   emailConfirmed: boolean
-
 }
-
-

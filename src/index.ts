@@ -9,12 +9,13 @@ var session = require('express-session')
 var MongoDBStore = require('connect-mongodb-session')(session)
 
 import { createConnection } from 'typeorm'
+import cors from 'cors'
 
 import { RegisterResolver } from './modules/user/Register'
 import { LoginResolver } from './modules/user/Login'
 import { GetUserResolver } from '@modules/user/LogedUser'
-import cors from 'cors'
 import { LogoutResolver } from '@modules/user/Logout'
+import { GetProductResolver } from '@modules/product/Product'
 
 
 const MONGO_URL = process.env.MONGO_URL
@@ -30,7 +31,8 @@ const main = async () => {
       GetUserResolver,
       RegisterResolver,
       LoginResolver,
-      LogoutResolver
+      LogoutResolver,
+      GetProductResolver
     ]
   })
 

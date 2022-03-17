@@ -1,11 +1,13 @@
 import { Field, InputType } from 'type-graphql'
 
 @InputType()
-export class LoginInput {
+export class ForeignLoginInput {
   @Field()
   email: string
 
   @Field()
-  password: string
+  foreignId: string
 
+  @Field()
+  provider: string
 }
