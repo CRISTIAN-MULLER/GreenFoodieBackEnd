@@ -1,8 +1,12 @@
-import { Field, ObjectType } from 'type-graphql'
-import { Column } from "typeorm"
+import { Field, ID, ObjectType } from 'type-graphql'
+import { Column, ObjectID, ObjectIdColumn } from "typeorm"
 
 @ObjectType()
 export class SaleUnit {
+  @Field(() => ID)
+  @ObjectIdColumn()
+  _id: ObjectID
+
   @Field({ nullable: true })
   @Column()
   saleUnit: string
@@ -18,6 +22,10 @@ export class SaleUnit {
   @Field()
   @Column('boolean', { default: true })
   active: boolean = true;
+
+  @Field()
+  @Column('boolean', { default: false })
+  isDefault: boolean = false;
 }
 
 

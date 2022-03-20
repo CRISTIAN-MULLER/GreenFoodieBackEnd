@@ -20,6 +20,4 @@ export class ProductInput {
 
   @Field()
   active: boolean
-
-
 }

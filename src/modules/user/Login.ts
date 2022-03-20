@@ -15,7 +15,6 @@ export class LoginResolver {
     @Arg('data') { email, password }: LoginInput,
     @Ctx() ctx: Context,
   ): Promise<User | null> {
-
     const user = await User.findOne({ where: { email } })
     const isValid = user && await bcrypt.compare(password, user.password)
     if (!isValid) return null

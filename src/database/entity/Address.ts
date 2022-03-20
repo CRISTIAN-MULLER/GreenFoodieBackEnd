@@ -1,6 +1,8 @@
 import { Field, ObjectType } from 'type-graphql'
 import { Column } from "typeorm"
 
+import { Location } from './Location'
+
 @ObjectType()
 export class Address {
 
@@ -31,6 +33,10 @@ export class Address {
   @Field({ nullable: true })
   @Column()
   reference: string
+
+  @Field(() => Location, { nullable: true })
+  @Column()
+  location: Location
 }
 
 

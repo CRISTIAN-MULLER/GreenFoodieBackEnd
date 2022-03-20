@@ -5,9 +5,8 @@ import { getMongoRepository } from 'typeorm'
 import { ProductInput } from './ProductInput'
 
 @Resolver()
-
 export class GetProductResolver {
-  @UseMiddleware(isAuthenticated)
+  //@UseMiddleware(isAuthenticated)
   @Query(() => [Product])
   async getAllProducts() {
     const product = await getMongoRepository(Product).find()

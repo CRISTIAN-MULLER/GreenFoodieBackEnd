@@ -1,0 +1,482 @@
+[
+  {
+    "name": "Abacaxi Havaí",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155534/m2pxiakzmx6dmbgiz2c8.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a44529deb2b040fc9e1dc7"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "9.5"
+        },
+        "description": "undefined"
+      },
+      {
+        "isDefault": false,
+        "active": false,
+        "_id": {
+          "$oid": "61a44529deb2b040fc9e1dc8"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "5.5"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Frutas",
+    "active": true
+  },
+  {
+    "name": "Agrião",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155597/xh8du9nvf265plb4yuej.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a44568deb2b040fc9e1dd7"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "2.29"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Hortaliças",
+    "active": true
+  },
+  {
+    "name": "Couve",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155569/imqulwyvtd7ilprdh2hy.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a4454bdeb2b040fc9e1dd1"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "1.5"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Hortaliças",
+    "active": true
+  },
+  {
+    "name": "Goiaba Vermelha",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155760/jmmicfvq494tgbdeclhy.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a4460bdeb2b040fc9e1ddb"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "0.75"
+        },
+        "description": ""
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a4460bdeb2b040fc9e1ddc"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "5.85"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Frutas",
+    "active": true
+  },
+  {
+    "name": "Rúcula",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155726/jf4ajqcymofbyvyl593o.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a445e8deb2b040fc9e1dd9"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "2.75"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Hortaliças",
+    "active": true
+  },
+  {
+    "name": "Granola",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155306/jkpubivv0map0fyy66dz.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a44445696bea4840b38b47"
+        },
+        "saleUnit": "g",
+        "price": {
+          "$numberDouble": "0.01"
+        },
+        "description": "Desc"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a44445696bea4840b38b48"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberInt": "10"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Grãos",
+    "active": true
+  },
+  {
+    "name": "Alface Americana",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155556/cyziom3gc4nh2qhzchdt.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a4453edeb2b040fc9e1dcf"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "2.1"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Hortaliças",
+    "active": true
+  },
+  {
+    "name": "Berinjela",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155279/xlmpbejznbdufcfrdclw.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a4442a696bea4840b38b43"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "1.05"
+        },
+        "description": "undefined"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a4442a696bea4840b38b44"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "5.99"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Verduras",
+    "active": false
+  },
+  {
+    "name": "Cebola",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155587/x5gih6mkupp9qoef0t5j.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a4455ddeb2b040fc9e1dd3"
+        },
+        "saleUnit": "g",
+        "price": {
+          "$numberDouble": "0.6"
+        },
+        "description": "undefined"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a4455ddeb2b040fc9e1dd4"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "3.49"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Verduras",
+    "active": true
+  },
+  {
+    "name": "Banana Prata",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155248/r1s12qvfm9e3hzjaxhk6.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": false,
+        "_id": {
+          "$oid": "61a4440a696bea4840b38b3f"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "1.1"
+        },
+        "description": "unidade"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a4440a696bea4840b38b40"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "7.45"
+        },
+        "description": "Penca"
+      }
+    ],
+    "category": "Frutas",
+    "active": false
+  },
+  {
+    "name": "Pepino Japonês",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155037/xzo1ehov9dosb22f8jix.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a44337696bea4840b38b37"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "0.9"
+        },
+        "description": "Preço em Unidade"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a44337696bea4840b38b38"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "4.49"
+        },
+        "description": "Preço em KG"
+      }
+    ],
+    "category": "Verduras",
+    "active": true
+  },
+  {
+    "name": "Linhaça Dourada",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155773/vee2b6mjuw0r84maww4q.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a44618deb2b040fc9e1ddf"
+        },
+        "saleUnit": "g",
+        "price": {
+          "$numberDouble": "0.02"
+        },
+        "description": "undefined"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a44618deb2b040fc9e1de0"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "15.09"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Grãos",
+    "active": true
+  },
+  {
+    "name": "Semente de Chia",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155322/pzmaa3axd3yc1eagftvj.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a44455696bea4840b38b4f"
+        },
+        "saleUnit": "g",
+        "price": {
+          "$numberDouble": "0.01"
+        },
+        "description": "undefined"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a44455696bea4840b38b50"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberInt": "10"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Grãos",
+    "active": true
+  },
+  {
+    "name": "Grão de Bico",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155545/djdpntomddkg5azsy3ch.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a44534deb2b040fc9e1dcb"
+        },
+        "saleUnit": "g",
+        "price": {
+          "$numberDouble": "0.01"
+        },
+        "description": "undefined"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a44534deb2b040fc9e1dcc"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "11.8"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Grãos",
+    "active": true
+  },
+  {
+    "name": "Limão Taiti",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155238/w1d9ztxhjqj1zvt5npre.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a44402696bea4840b38b3b"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "0.35"
+        },
+        "description": "Limão"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a44402696bea4840b38b3c"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "3.79"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Frutas",
+    "active": true
+  },
+  {
+    "name": "Batata Inglesa",
+    "image": "http://res.cloudinary.com/dqtdv6ccy/image/upload/v1638155511/ytvcvjzt1jahgnyrow4v.png",
+    "description": "Descrição do produto.",
+    "saleUnits": [
+      {
+        "isDefault": true,
+        "active": true,
+        "_id": {
+          "$oid": "61a44512deb2b040fc9e1dc3"
+        },
+        "saleUnit": "Un",
+        "price": {
+          "$numberDouble": "0.7"
+        },
+        "description": "undefined"
+      },
+      {
+        "isDefault": false,
+        "active": true,
+        "_id": {
+          "$oid": "61a44512deb2b040fc9e1dc4"
+        },
+        "saleUnit": "Kg",
+        "price": {
+          "$numberDouble": "4.69"
+        },
+        "description": "Descrição"
+      }
+    ],
+    "category": "Verduras",
+    "active": true
+  }
+]
