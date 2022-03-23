@@ -1,5 +1,5 @@
 import { Field, InputType } from 'type-graphql'
-import { SaleUnitInput } from './SaleUnitInput'
+import { SaleUnitInput } from './SaleUnit.input'
 
 @InputType()
 export class ProductInput {

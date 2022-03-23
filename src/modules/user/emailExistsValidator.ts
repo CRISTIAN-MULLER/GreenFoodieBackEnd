@@ -1,15 +1,16 @@
+import { UserModel } from './../../database/entity/Users'
 import {
   registerDecorator,
   ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface
 } from 'class-validator'
-import { User } from '../../database/entity/Users'
+
 
 @ValidatorConstraint({ async: true })
 export class emailExistsConstraint implements ValidatorConstraintInterface {
   validate(email: string) {
-    return User.findOne({ where: { email } }).then(user => {
+    return UserModel.findOne({ where: { email } }).then(user => {
       if (user) return false
       return true
     })

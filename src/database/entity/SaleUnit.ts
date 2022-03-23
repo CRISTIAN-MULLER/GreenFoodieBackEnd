@@ -1,30 +1,30 @@
+import { mongoose, Prop } from '@typegoose/typegoose'
 import { Field, ID, ObjectType } from 'type-graphql'
-import { Column, ObjectID, ObjectIdColumn } from "typeorm"
+
 
 @ObjectType()
 export class SaleUnit {
   @Field(() => ID)
-  @ObjectIdColumn()
-  _id: ObjectID
+  _id: mongoose.Types.ObjectId
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   saleUnit: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   description: string
 
   @Field({ nullable: true })
-  @Column("decimal", { precision: 2, scale: 2 })
+  @Prop({ precision: 2, scale: 2 })
   price: number
 
   @Field()
-  @Column('boolean', { default: true })
+  @Prop({ default: true })
   active: boolean = true;
 
   @Field()
-  @Column('boolean', { default: false })
+  @Prop({ default: false })
   isDefault: boolean = false;
 }
 

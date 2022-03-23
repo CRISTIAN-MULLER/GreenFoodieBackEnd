@@ -1,41 +1,40 @@
+import { Prop } from '@typegoose/typegoose'
 import { Field, ObjectType } from 'type-graphql'
-import { Column } from "typeorm"
-
 import { Location } from './Location'
 
 @ObjectType()
 export class Address {
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   zipcode: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   street: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   houseNumber: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   district: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   city: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   state: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   reference: string
 
   @Field(() => Location, { nullable: true })
-  @Column()
+  @Prop()
   location: Location
 }
 

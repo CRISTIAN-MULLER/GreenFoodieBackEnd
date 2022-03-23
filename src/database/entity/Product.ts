@@ -1,45 +1,44 @@
-
+import paginationPlugin, { PaginateModel } from 'typegoose-cursor-pagination'
+//import { Typegoose, prop, plugin, index } from "typegoose";
+import { getModelForClass, mongoose, Prop, plugin } from '@typegoose/typegoose'
 import { IsDefined } from 'class-validator'
 import { Field, ID, ObjectType } from 'type-graphql'
-import { Entity, Column, ObjectIdColumn, BaseEntity, ObjectID } from "typeorm"
 import { SaleUnit } from './SaleUnit'
 
-
+@plugin(paginationPlugin)
 @ObjectType()
-@Entity("Products")
-export class Product extends BaseEntity {
+export class Product {
   @Field(() => ID)
-  @ObjectIdColumn()
-  _id: ObjectID
+  _id: mongoose.Types.ObjectId
 
   @Field()
-  @Column()
+  @Prop()
   @IsDefined()
   name: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   @IsDefined()
   description: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   image: string
 
   @Field(() => [SaleUnit], { nullable: true })
-  @Column()
+  @Prop({ type: [SaleUnit] })
   saleUnits: SaleUnit[]
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   category: string
 
   @Field()
-  @Column('boolean', { default: true })
+  @Prop({ default: true })
   active: boolean = true;
 }
 
-
+export const ProductModel = getModelForClass(Product) as PaginateModel<Product, typeof Product>
 
 
 

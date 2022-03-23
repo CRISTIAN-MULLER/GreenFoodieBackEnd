@@ -2,13 +2,14 @@ import 'dotenv/config'
 import "reflect-metadata"
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
+const { log } = require('mercedlogger')
 
 import express from 'express'
 
 var session = require('express-session')
 var MongoDBStore = require('connect-mongodb-session')(session)
+const mongoose = require('mongoose')
 
-import { createConnection } from 'typeorm'
 import cors from 'cors'
 
 import { RegisterResolver } from './modules/user/Register'
@@ -24,8 +25,6 @@ const SESSIONS_SECRET = process.env.SESSIONS_SECRET
 const NODE_ENV = process.env.NODE_ENV
 
 const main = async () => {
-  await createConnection()
-
   const schema = await buildSchema({
     resolvers: [
       GetUserResolver,
@@ -35,6 +34,16 @@ const main = async () => {
       GetProductResolver
     ]
   })
+
+  mongoose.connect(MONGO_URL!)
+
+  mongoose.connection
+    // Event for When Connection Opens
+    .on('open', () => log.green('STATUS', 'Connected to Mongo'))
+    // Event for When Connection Closes
+    .on('close', () => log.red('STATUS', 'Disconnected from Mongo'))
+    // Event for Connection Errors
+    .on('error', (error: any) => log.red('ERROR', error))
 
   var store = new MongoDBStore({
     uri: MONGO_URL,

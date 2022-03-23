@@ -1,28 +1,27 @@
+import { getModelForClass, mongoose, Prop } from '@typegoose/typegoose'
 import { IsDefined } from 'class-validator'
-import { Field, ObjectType, Root } from 'type-graphql'
-import { Entity, Column, ObjectIdColumn, BaseEntity, ObjectID } from "typeorm"
+import { Field, ID, ObjectType, Root } from 'type-graphql'
 import { Address } from './Address'
 import { ForeignId } from './ForeignId'
 
 
 @ObjectType()
-@Entity("Users")
-export class User extends BaseEntity {
-
-  @ObjectIdColumn()
-  _id: ObjectID
+export class User {
+  @Field(() => ID)
+  @Prop()
+  _id: mongoose.Types.ObjectId
 
   @Field(() => ForeignId, { nullable: true })
-  @Column()
+  @Prop({ type: ForeignId })
   foreignIds: ForeignId[]
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   @IsDefined()
   firstName: string
 
   @Field()
-  @Column()
+  @Prop()
   @IsDefined()
   lastName: string
 
@@ -32,30 +31,32 @@ export class User extends BaseEntity {
   }
 
   @Field()
-  @Column("text", { unique: true })
+  @Prop({ unique: true })
   @IsDefined()
   email: string
 
-  @Column()
+  @Prop()
   @IsDefined()
   password: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   phone: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   profile_picture: string
 
   @Field({ nullable: true })
-  @Column()
+  @Prop()
   role: string
 
   @Field(() => Address, { nullable: true })
-  @Column()
+  @Prop()
   address: Address
 
-  @Column("boolean", { default: false })
+  @Prop({ default: false })
   emailConfirmed: boolean
 }
+
+export const UserModel = getModelForClass(User)

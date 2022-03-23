@@ -1,15 +1,16 @@
+import { Prop } from '@typegoose/typegoose'
 import { Field, ObjectType } from 'type-graphql'
-import { Column } from "typeorm"
+
 
 @ObjectType()
 export class Location {
 
   @Field({ nullable: true })
-  @Column({ default: 'point' })
+  @Prop({ default: 'point' })
   type: string
 
   @Field(() => [Number, Number], { nullable: true })
-  @Column()
+  @Prop({ type: [Number, Number] })
   coordinates: [number, number]
 }
 

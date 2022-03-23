@@ -1,15 +1,14 @@
+import { Prop } from '@typegoose/typegoose'
 import { Field, ObjectType } from 'type-graphql'
-import { Column } from "typeorm"
 
 @ObjectType()
 export class ForeignId {
+  @Field({ nullable: true })
+  @Prop()
+  userId: string
 
   @Field({ nullable: true })
-  @Column()
-  id: string
-
-  @Field({ nullable: true })
-  @Column()
+  @Prop()
   provider: string
 
 }

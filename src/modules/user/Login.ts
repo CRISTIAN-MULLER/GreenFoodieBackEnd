@@ -1,12 +1,17 @@
 
-import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
+import {
+  Arg,
+  Ctx,
+  Mutation,
+  Resolver
+} from 'type-graphql'
 
 import bcrypt from 'bcryptjs'
-import { User } from '@database/entity/Users'
-import { LoginInput } from './LoginInput'
-import { ForeignLoginInput } from './ForeignLoginInput'
-import Context from 'src/types/Context'
-import { getMongoRepository } from 'typeorm'
+import { User, UserModel } from '@database/entity/Users'
+import { LoginInput } from '../../@types/inputs/Login.input'
+import { ForeignLoginInput } from '../../@types/inputs/ForeignLogin.input'
+import Context from '../../@types/interfaces/Context.interface'
+
 
 @Resolver()
 export class LoginResolver {
@@ -15,12 +20,11 @@ export class LoginResolver {
     @Arg('data') { email, password }: LoginInput,
     @Ctx() ctx: Context,
   ): Promise<User | null> {
-    const user = await User.findOne({ where: { email } })
+    const user = await UserModel.findOne({ where: { email } })
     const isValid = user && await bcrypt.compare(password, user.password)
     if (!isValid) return null
 
-    //@ts-ignore
-    ctx.req.session.userId = user._id
+    ctx.req.session!.userId = user._id
 
     return user
   }
@@ -30,7 +34,7 @@ export class LoginResolver {
     @Ctx() ctx: Context,
   ): Promise<User | null> {
 
-    const user = await await getMongoRepository(User).findOne({
+    const user = await UserModel.findOne({
       where: {
         'email': { $eq: email },
         'foreignIds.id': { $eq: foreignId },
@@ -40,8 +44,7 @@ export class LoginResolver {
 
     if (!user) return null
 
-    //@ts-ignore
-    ctx.req.session.userId = user._id
+    ctx.req.session!.userId = user._id
 
     return user
   }

@@ -1,9 +1,16 @@
+import { UserModel } from '../../database/entity/Users'
 //import { isAuthenticated } from './../../middlewares/isAuthenticated'
-import { Arg, Mutation, Query, Resolver } from 'type-graphql'
+import {
+  Arg,
+  Mutation,
+  Query,
+  Resolver
+} from 'type-graphql'
 
 import bcrypt from 'bcryptjs'
 import { User } from '../../database/entity/Users'
-import { RegisterInput } from './RegisterInput'
+import { RegisterInput } from '../../@types/inputs/Register.input'
+
 
 
 @Resolver()
@@ -20,12 +27,12 @@ export class RegisterResolver {
 
     const hashedPassword = await bcrypt.hash(password, 12)
 
-    const user = await User.create({
+    const user = await UserModel.create({
       firstName,
       lastName,
       email,
       password: hashedPassword
-    }).save()
+    })
 
     //await sendEmail( email )
 
