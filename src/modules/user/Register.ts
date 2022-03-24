@@ -12,7 +12,6 @@ import { User } from '../../database/entity/Users'
 import { RegisterInput } from '../../@types/inputs/Register.input'
 
 
-
 @Resolver()
 export class RegisterResolver {
   // @UseMiddleware(isAuthenticated)
@@ -22,7 +21,7 @@ export class RegisterResolver {
   }
   @Mutation(() => User)
   async registerUser(
-    @Arg('data') { firstName, lastName, email, password }: RegisterInput,
+    @Arg('data') { firstName, lastName, email, password, phone }: RegisterInput,
   ): Promise<User> {
 
     const hashedPassword = await bcrypt.hash(password, 12)
@@ -31,6 +30,7 @@ export class RegisterResolver {
       firstName,
       lastName,
       email,
+      phone,
       password: hashedPassword
     })
 

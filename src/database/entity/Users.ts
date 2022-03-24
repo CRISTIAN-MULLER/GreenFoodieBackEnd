@@ -8,7 +8,6 @@ import { ForeignId } from './ForeignId'
 @ObjectType()
 export class User {
   @Field(() => ID)
-  @Prop()
   _id: mongoose.Types.ObjectId
 
   @Field(() => ForeignId, { nullable: true })
@@ -27,7 +26,7 @@ export class User {
 
   @Field()
   fullName(@Root() parent: User): string {
-    return `${parent.firstName} ${parent.lastName}`
+    return `${this.firstName} ${parent.lastName}`
   }
 
   @Field()

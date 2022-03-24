@@ -10,7 +10,7 @@ import {
 @ValidatorConstraint({ async: true })
 export class emailExistsConstraint implements ValidatorConstraintInterface {
   validate(email: string) {
-    return UserModel.findOne({ where: { email } }).then(user => {
+    return UserModel.findOne({ 'email': { $eq: email }, }).then(user => {
       if (user) return false
       return true
     })
