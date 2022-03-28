@@ -20,7 +20,8 @@ export class LoginResolver {
     @Arg('data') { email, password }: LoginInput,
     @Ctx() ctx: Context,
   ): Promise<User | null> {
-    const user = await UserModel.findOne({ where: { email } })
+    const user = await UserModel.findOne({ email: email })
+
     const isValid = user && await bcrypt.compare(password, user.password)
     if (!isValid) return null
 
@@ -35,14 +36,14 @@ export class LoginResolver {
   ): Promise<User | null> {
 
     const user = await UserModel.findOne({
-      where: {
-        'email': { $eq: email },
-        'foreignIds.id': { $eq: foreignId },
-        'foreignIds.provider': { $eq: provider },
-      }
+      email: email,
     })
 
-    if (!user) return null
+    const isValid = user && user.foreignIds.map(
+      (foreign) => foreign.userId === foreignId &&
+        foreign.provider === provider)
+
+    if (!isValid) return null
 
     ctx.req.session!.userId = user._id
 

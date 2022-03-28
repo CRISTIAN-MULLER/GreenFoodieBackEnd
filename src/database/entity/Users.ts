@@ -50,9 +50,9 @@ export class User {
   @Prop()
   role: string
 
-  @Field(() => Address, { nullable: true })
-  @Prop()
-  address: Address
+  @Field(() => [Address], { nullable: true })
+  @Prop({ type: [Address] })
+  addresses: Address[]
 
   @Prop({ default: false })
   emailConfirmed: boolean

@@ -1,6 +1,7 @@
 import { Length, IsEmail } from "class-validator"
 import { Field, InputType } from 'type-graphql'
 import { emailExists } from '../../modules/user/emailExistsValidator'
+import { AddressInput } from './Address.input'
 
 @InputType()
 export class RegisterInput {
@@ -22,4 +23,7 @@ export class RegisterInput {
 
   @Field({ nullable: true })
   phone?: string
+
+  @Field(() => [AddressInput], { nullable: true })
+  addresses: AddressInput[]
 }

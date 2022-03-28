@@ -21,7 +21,7 @@ export class RegisterResolver {
   }
   @Mutation(() => User)
   async registerUser(
-    @Arg('data') { firstName, lastName, email, password, phone }: RegisterInput,
+    @Arg('data') { firstName, lastName, email, password, phone, addresses }: RegisterInput,
   ): Promise<User> {
 
     const hashedPassword = await bcrypt.hash(password, 12)
@@ -31,6 +31,7 @@ export class RegisterResolver {
       lastName,
       email,
       phone,
+      addresses,
       password: hashedPassword
     })
 

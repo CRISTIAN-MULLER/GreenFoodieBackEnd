@@ -4,9 +4,8 @@ import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class Location {
-
   @Field({ nullable: true })
-  @Prop({ default: 'point' })
+  @Prop({ default: 'Point' })
   type: string
 
   @Field(() => [Number, Number], { nullable: true })
