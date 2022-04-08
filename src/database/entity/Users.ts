@@ -3,6 +3,7 @@ import { IsDefined } from 'class-validator'
 import { Field, ID, ObjectType, Root } from 'type-graphql'
 import { Address } from './Address'
 import { ForeignId } from './ForeignId'
+import { PaymentMethod } from './PaymentMethod'
 
 
 @ObjectType()
@@ -53,6 +54,12 @@ export class User {
   @Field(() => [Address], { nullable: true })
   @Prop({ type: [Address] })
   addresses: Address[]
+
+
+  @Field(() => [PaymentMethod], { nullable: true })
+  @Prop({ type: [PaymentMethod] })
+  paymentMethods: PaymentMethod[]
+
 
   @Prop({ default: false })
   emailConfirmed: boolean

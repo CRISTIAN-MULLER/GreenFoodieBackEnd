@@ -40,6 +40,10 @@ export class Address {
   @Field(() => Location, { nullable: true })
   @Prop()
   location: Location
+
+  @Field()
+  @Prop({ default: false })
+  favorite: boolean
 }
 
 

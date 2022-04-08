@@ -17,6 +17,7 @@ import { LoginResolver } from './modules/user/Login'
 import { GetUserResolver } from '@modules/user/LogedUser'
 import { LogoutResolver } from '@modules/user/Logout'
 import { GetProductResolver } from '@modules/product/Product'
+import { PaymentResolver } from '@modules/payment/Payment'
 
 
 const MONGO_URL = process.env.MONGO_URL
@@ -31,7 +32,8 @@ const main = async () => {
       RegisterResolver,
       LoginResolver,
       LogoutResolver,
-      GetProductResolver
+      GetProductResolver,
+      PaymentResolver
     ]
   })
 
