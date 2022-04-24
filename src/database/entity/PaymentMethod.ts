@@ -1,31 +1,31 @@
 import { Prop } from '@typegoose/typegoose'
+import { PAYMENT_METHOD, PAYMENT_STATUS } from '@typings/enums/Payment.enum'
 import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
-export class PaymentMethod {
-  @Field({ nullable: true })
-  @Prop()
-  cardName: string
+export default class PaymentMethod {
+	@Field()
+	@Prop({
+		type: String,
+		enum: PAYMENT_METHOD,
+		default: PAYMENT_METHOD.CASH_ON_DELIVERY,
+	})
+	paymentMethod: PAYMENT_METHOD
 
-  @Field({ nullable: true })
-  @Prop()
-  cardHolderName: string
+	@Field()
+	@Prop({
+		type: String,
+		enum: PAYMENT_STATUS,
+		default: PAYMENT_STATUS.TO_PAY,
+	})
+	paymentStatus: PAYMENT_STATUS
 
-  @Field({ nullable: true })
-  @Prop()
-  cardNumber: string
+	@Field()
+	@Prop()
+	cardBrand: string
 
-  @Field({ nullable: true })
-  @Prop()
-  expirationDate: string
-
-  @Field({ nullable: true })
-  @Prop()
-  cardBrand: string
-
-  @Field({ nullable: true })
-  @Prop()
-  cvv: string
+	@Field()
+	@Prop()
+	// troco
+	change: number
 }
-
-

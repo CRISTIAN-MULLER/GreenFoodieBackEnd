@@ -1,19 +1,29 @@
 import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
-export class Paginate {
-  @Field({ nullable: true, description: 'true if has more pages to query' })
-  hasNext: boolean
+export default class Paginate {
+	@Field({ nullable: true, description: 'true se tiver mais páginas' })
+	hasNext: boolean
 
-  @Field({ nullable: true, description: 'true if has previous pages to query' })
-  hasPrevious: Boolean
+	@Field({ nullable: true, description: 'true se tiver página anterior' })
+	hasPrevious: Boolean
 
-  @Field({ nullable: true, description: 'next is the cursor for the next page' })
-  next: String // next page is the cursor for the next page
+	@Field({
+		nullable: true,
+		description: 'Cursor para a próxima página',
+	})
+	next: String
 
-  @Field({ nullable: true, description: 'previous is the cursor for the previous page' })
-  previous: String // previous is the cursor for the previous page
+	@Field({
+		nullable: true,
+		description: 'Cursor para a página anterior',
+	})
+	previous: String
 
-  @Field({ nullable: true, description: 'previous is the cursor for the previous page' })
-  totalDocs: Number // totalDocs is the total amount of docs for the query
+	@Field({
+		nullable: true,
+		description:
+			'Total de documentos (itens retornados do banco de dados) nessa consulta',
+	})
+	totalDocs: Number
 }

@@ -3,7 +3,7 @@ import { Field, ID, ObjectType } from 'type-graphql'
 
 
 @ObjectType()
-export class SaleUnit {
+export default class SaleUnit {
   @Field(() => ID)
   _id: mongoose.Types.ObjectId
 

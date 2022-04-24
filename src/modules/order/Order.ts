@@ -11,22 +11,21 @@ import {
 import { IPaginateOptions } from 'typegoose-cursor-pagination'
 
 import Paginate from '@database/custom/Pagination'
-import Product, { ProductModel } from '@database/entity/Product'
-
-import ProductInput from '@typings/inputs/Product.input'
 import PaginationInput from '@typings/inputs/Pagination.input'
+import Order, { OrderModel } from '@database/entity/Order'
+import OrderInput from '@typings/inputs/Order.input'
 
 @ObjectType()
-class ProductPaginated extends Paginate {
-	@Field(() => [Product])
-	products: Product[]
+class OrderPaginated extends Paginate {
+	@Field(() => [Order])
+	orders: Order[]
 }
 
 @Resolver()
-export default class ProductResolver {
+export default class OrderResolver {
 	// @UseMiddleware(isAuthenticated)
-	@Query(() => ProductPaginated)
-	async getAllProducts(
+	@Query(() => OrderPaginated)
+	async getAllOrders(
 		@Arg('data')
 		{
 			limit,
@@ -35,7 +34,7 @@ export default class ProductResolver {
 			nextPage,
 			previousPage,
 		}: PaginationInput,
-	): Promise<ProductPaginated> {
+	): Promise<OrderPaginated> {
 		const options: IPaginateOptions = {
 			sortField,
 			sortAscending,
@@ -44,9 +43,9 @@ export default class ProductResolver {
 			previous: previousPage,
 		}
 
-		const response = await ProductModel.findPaged(options)
+		const response = await OrderModel.findPaged(options)
 
-		const products = response.docs
+		const orders = response.docs
 		const hasNext = response.hasNext ? response.hasNext : false
 		const hasPrevious = response.hasPrevious ? response.hasPrevious : false
 		const next = response.next ? response.next : ''
@@ -54,7 +53,7 @@ export default class ProductResolver {
 		const totalDocs = response.totalDocs ? response.totalDocs : 0
 
 		return {
-			products,
+			orders,
 			hasNext,
 			hasPrevious,
 			next,
@@ -64,18 +63,18 @@ export default class ProductResolver {
 	}
 
 	// @UseMiddleware(isAuthenticated)
-	@Mutation(() => Product)
-	async creatProduct(
-		@Arg('data') newProductData: ProductInput,
-	): Promise<Product> {
-		const product = await ProductModel.create({
-			name: newProductData.name,
-			description: newProductData.description,
-			image: newProductData.image,
-			saleUnits: newProductData.saleUnits,
-			category: newProductData.category,
-			active: newProductData.active,
+	@Mutation(() => Order)
+	async creatOrder(@Arg('data') newOrderData: OrderInput): Promise<Order> {
+		const order = await OrderModel.create({
+			customerId: newOrderData.customerId,
+			items: newOrderData.items,
+			phone: newOrderData.phone,
+			address: newOrderData.address,
+			payment: newOrderData.payment,
+			origin: newOrderData.origin,
+			status: newOrderData.status,
+			observation: newOrderData.observation,
 		})
-		return product
+		return order
 	}
 }

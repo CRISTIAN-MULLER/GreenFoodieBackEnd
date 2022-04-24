@@ -1,52 +1,48 @@
-
-import {
-  Arg,
-  Ctx,
-  Mutation,
-  Resolver
-} from 'type-graphql'
+import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 
 import bcrypt from 'bcryptjs'
 import { User, UserModel } from '@database/entity/Users'
-import { LoginInput } from '../../@types/inputs/Login.input'
-import { ForeignLoginInput } from '../../@types/inputs/ForeignLogin.input'
-import Context from '../../@types/interfaces/Context.interface'
-
+import LoginInput from '@typings/inputs/Login.input'
+import ForeignLoginInput from '@typings/inputs/ForeignLogin.input'
+import Context from '@typings/interfaces/Context.interface'
 
 @Resolver()
-export class LoginResolver {
-  @Mutation(() => User, { nullable: true })
-  async login(
-    @Arg('data') { email, password }: LoginInput,
-    @Ctx() ctx: Context,
-  ): Promise<User | null> {
-    const user = await UserModel.findOne({ email: email })
+export default class LoginUserResolver {
+	@Mutation(() => User, { nullable: true })
+	async login(
+		@Arg('data') { email, password }: LoginInput,
+		@Ctx() ctx: Context,
+	): Promise<User | null> {
+		const user = await UserModel.findOne({ email })
 
-    const isValid = user && await bcrypt.compare(password, user.password)
-    if (!isValid) return null
+		const isValid = user && (await bcrypt.compare(password, user.password))
+		if (!isValid) return null
 
-    ctx.req.session!.userId = user._id
+		ctx.req.session!.userId = user._id
 
-    return user
-  }
-  @Mutation(() => User, { nullable: true })
-  async foreignLogin(
-    @Arg('data') { email, foreignId, provider }: ForeignLoginInput,
-    @Ctx() ctx: Context,
-  ): Promise<User | null> {
+		return user
+	}
 
-    const user = await UserModel.findOne({
-      email: email,
-    })
+	@Mutation(() => User, { nullable: true })
+	async foreignLogin(
+		@Arg('data') { email, foreignId, provider }: ForeignLoginInput,
+		@Ctx() ctx: Context,
+	): Promise<User | null> {
+		const user = await UserModel.findOne({
+			email,
+		})
 
-    const isValid = user && user.foreignIds.map(
-      (foreign) => foreign.userId === foreignId &&
-        foreign.provider === provider)
+		const isValid =
+			user &&
+			user.foreignIds.map(
+				(foreign) =>
+					foreign.userId === foreignId && foreign.provider === provider,
+			)
 
-    if (!isValid) return null
+		if (!isValid) return null
 
-    ctx.req.session!.userId = user._id
+		ctx.req.session!.userId = user._id
 
-    return user
-  }
+		return user
+	}
 }
