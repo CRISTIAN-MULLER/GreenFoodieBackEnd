@@ -8,6 +8,7 @@ import CardInfo from './CardInfo'
 @ObjectType()
 export class User {
 	@Field(() => ID)
+	@Prop()
 	_id: mongoose.Types.ObjectId
 
 	@Field(() => ForeignId, { nullable: true })
@@ -44,7 +45,7 @@ export class User {
 
 	@Field({ nullable: true })
 	@Prop()
-	profile_picture: string
+	profilePicture: string
 
 	@Field({ nullable: true })
 	@Prop()

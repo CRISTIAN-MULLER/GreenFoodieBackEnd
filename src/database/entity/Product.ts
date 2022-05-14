@@ -9,6 +9,7 @@ import SaleUnit from './SaleUnit'
 @ObjectType()
 export default class Product {
 	@Field(() => ID)
+	@Prop()
 	_id: mongoose.Types.ObjectId
 
 	@Field()

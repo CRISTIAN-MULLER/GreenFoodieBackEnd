@@ -18,7 +18,7 @@ export default class OrderInput {
 	phone: string
 
 	@Field(() => AddressInput)
-	address: AddressInput
+	deliveryAddress: AddressInput
 
 	@Field(() => PaymentMethodInput)
 	payment: PaymentMethodInput

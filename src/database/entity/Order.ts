@@ -8,11 +8,11 @@ import {
 } from '@typegoose/typegoose'
 import { IsDefined } from 'class-validator'
 import { Field, ID, ObjectType } from 'type-graphql'
+import { ORDER_ORIGIN, ORDER_STATUS } from '@typings/enums/Order.enum'
 import { User } from './Users'
 import OrderItem from './OrderItem'
 import Address from './Address'
 import PaymentMethod from './PaymentMethod'
-import { ORDER_ORIGIN, ORDER_STATUS } from '@typings/enums/Order.enum'
 
 @plugin(paginationPlugin)
 @ObjectType()
@@ -35,7 +35,7 @@ export default class Order {
 
 	@Field(() => Address)
 	@Prop({ type: Address })
-	address: Address
+	deliveryAddress: Address
 
 	@Field(() => PaymentMethod)
 	@Prop({ type: PaymentMethod })

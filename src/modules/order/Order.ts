@@ -69,7 +69,7 @@ export default class OrderResolver {
 			customerId: newOrderData.customerId,
 			items: newOrderData.items,
 			phone: newOrderData.phone,
-			address: newOrderData.address,
+			deliveryAddress: newOrderData.deliveryAddress,
 			payment: newOrderData.payment,
 			origin: newOrderData.origin,
 			status: newOrderData.status,

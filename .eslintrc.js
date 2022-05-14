@@ -36,10 +36,6 @@ module.exports = {
 		'class-methods-use-this': 'off',
 		'no-underscore-dangle': ['error', { allow: ['_id'] }],
 		'no-shadow': 'off',
-		'@typescript-eslint/no-shadow': [
-			'error',
-			,
-			{ ignoreTypeValueShadow: true },
-		],
+		'@typescript-eslint/no-shadow': ['error', { ignoreTypeValueShadow: true }],
 	},
 }

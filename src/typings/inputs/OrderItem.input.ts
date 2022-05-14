@@ -6,7 +6,7 @@ import SaleUnitInput from './SaleUnit.input'
 @InputType()
 export default class OrderItemInput {
 	@Field(() => ID)
-	_id: mongoose.Types.ObjectId
+	productId: mongoose.Types.ObjectId
 
 	@Field()
 	name: string

@@ -8,7 +8,7 @@ import SaleUnit from './SaleUnit'
 export default class OrderItem {
 	@Field(() => ID)
 	@Prop({ ref: () => Product })
-	_id: Ref<Product>
+	productId: Ref<Product>
 
 	@Field()
 	@Prop()
