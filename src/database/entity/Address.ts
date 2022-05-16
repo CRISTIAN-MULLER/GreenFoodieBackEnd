@@ -3,7 +3,7 @@ import { Field, ObjectType } from 'type-graphql'
 import Location from './Location'
 
 @ObjectType()
-export default class Address {
+class Address {
 	@Field({ nullable: true })
 	@Prop()
 	name: string
@@ -37,10 +37,12 @@ export default class Address {
 	reference: string
 
 	@Field(() => Location, { nullable: true })
-	@Prop()
+	@Prop({ _id: false })
 	location: Location
 
 	@Field()
 	@Prop({ default: false })
-	favorite: boolean
+	isFavorite: boolean
 }
+
+export default Address

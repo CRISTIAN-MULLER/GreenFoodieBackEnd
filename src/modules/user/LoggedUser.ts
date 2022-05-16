@@ -4,7 +4,7 @@ import { User, UserModel } from '../../database/entity/Users'
 
 // import { isAuthenticated } from 'src/middlewares/isAuthenticated'
 
-@Resolver()
+@Resolver(User)
 export default class LoggedUserResolver {
 	// @UseMiddleware(isAuthenticated)
 	@Query(() => User, { nullable: true })

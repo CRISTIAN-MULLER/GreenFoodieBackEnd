@@ -27,6 +27,7 @@
 		"typeRoots": ["./typings/", "./node_modules/@types/"],
 		"paths": {
 			"@database/*": ["./database/*"],
+			"@middlewares/*": ["./middlewares/*"],
 			"@modules/*": ["./modules/*"],
 			"@typings/*": ["./typings/*"]
 		}

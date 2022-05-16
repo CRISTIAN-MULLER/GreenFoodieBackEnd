@@ -1,6 +1,6 @@
 import { getModelForClass, mongoose, Prop } from '@typegoose/typegoose'
 import { IsDefined } from 'class-validator'
-import { Field, ID, ObjectType, Root } from 'type-graphql'
+import { Field, ID, ObjectType } from 'type-graphql'
 import Address from './Address'
 import ForeignId from './ForeignId'
 import CardInfo from './CardInfo'
@@ -26,8 +26,11 @@ export class User {
 	lastName: string
 
 	@Field()
-	fullName(@Root() parent: User): string {
-		return `${this.firstName} ${parent.lastName}`
+	fullName(): String {
+		const { firstName } = this
+
+		console.log(firstName)
+		return `${this.firstName} ${this.lastName}`
 	}
 
 	@Field()

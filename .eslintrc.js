@@ -16,6 +16,7 @@ module.exports = {
 				map: [
 					['@', './src'],
 					['@database', './src/database'],
+					['@middlewares', './src/middlewares'],
 					['@modules', './src/modules'],
 					['@typings', './src/typings'],
 				],

@@ -1,4 +1,5 @@
 import paginationPlugin, { PaginateModel } from 'typegoose-cursor-pagination'
+
 import {
 	getModelForClass,
 	mongoose,
@@ -20,13 +21,17 @@ export default class Order {
 	@Field(() => ID)
 	_id: mongoose.Types.ObjectId
 
+	@Field()
+	@Prop()
+	orderNumber: number
+
 	@Field(() => ID)
 	@Prop({ ref: () => User })
 	@IsDefined()
 	customerId: Ref<User>
 
 	@Field(() => [OrderItem])
-	@Prop({ type: [OrderItem] })
+	@Prop({ type: [OrderItem], _id: false })
 	items: OrderItem[]
 
 	@Field()
@@ -34,11 +39,11 @@ export default class Order {
 	phone: string
 
 	@Field(() => Address)
-	@Prop({ type: Address })
+	@Prop({ type: Address, _id: false })
 	deliveryAddress: Address
 
 	@Field(() => PaymentMethod)
-	@Prop({ type: PaymentMethod })
+	@Prop({ type: PaymentMethod, _id: false })
 	payment: PaymentMethod
 
 	@Field()
@@ -52,6 +57,10 @@ export default class Order {
 		default: ORDER_STATUS.ORDER_PLACED,
 	})
 	status: ORDER_STATUS
+
+	@Field()
+	@Prop()
+	step: number
 
 	@Field()
 	@Prop()

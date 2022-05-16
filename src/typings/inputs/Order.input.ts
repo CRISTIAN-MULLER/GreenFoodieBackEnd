@@ -11,8 +11,8 @@ export default class OrderInput {
 	@Field(() => ID)
 	customerId: mongoose.Types.ObjectId
 
-	@Field(() => OrderItemInput)
-	items: OrderItemInput
+	@Field(() => [OrderItemInput])
+	items: OrderItemInput[]
 
 	@Field()
 	phone: string
@@ -28,6 +28,9 @@ export default class OrderInput {
 
 	@Field(() => ORDER_STATUS)
 	status: ORDER_STATUS
+
+	@Field()
+	step: number
 
 	@Field()
 	observation: string
