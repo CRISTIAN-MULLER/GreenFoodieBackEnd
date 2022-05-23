@@ -7,13 +7,13 @@ import ForeignLoginInput from '@typings/inputs/ForeignLogin.input'
 import Context from '@typings/interfaces/Context.interface'
 
 @Resolver()
-export default class LoginUserResolver {
+export default class UserLoginResolver {
 	@Mutation(() => User, { nullable: true })
 	async login(
 		@Arg('data') { email, password }: LoginInput,
 		@Ctx() ctx: Context,
 	): Promise<User | null> {
-		const user = await UserModel.findOne({ email })
+		const user = (await UserModel.findOne({ email }).lean()) as User
 
 		const isValid = user && (await bcrypt.compare(password, user.password))
 		if (!isValid) return null
@@ -28,9 +28,9 @@ export default class LoginUserResolver {
 		@Arg('data') { email, foreignId, provider }: ForeignLoginInput,
 		@Ctx() ctx: Context,
 	): Promise<User | null> {
-		const user = await UserModel.findOne({
+		const user = (await UserModel.findOne({
 			email,
-		})
+		}).lean()) as User
 
 		const isValid =
 			user &&

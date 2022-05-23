@@ -1,13 +1,33 @@
 import { Prop } from '@typegoose/typegoose'
-import { Field, ObjectType } from 'type-graphql'
+import { Field, InputType, ObjectType } from 'type-graphql'
+
+@ObjectType()
+@InputType('CoordinatesInput')
+export class Coordinates {
+	@Field()
+	@Prop()
+	latitude: number
+
+	@Field()
+	@Prop()
+	longitude: number
+
+	@Field()
+	@Prop()
+	latitudeDelta: number
+
+	@Field()
+	@Prop()
+	longitudeDelta: number
+}
 
 @ObjectType()
 export default class Location {
 	@Field({ nullable: true })
-	@Prop({ default: 'Point' })
+	@Prop({ default: 'LatLng' })
 	type: string
 
-	@Field(() => [Number, Number], { nullable: true })
-	@Prop({ type: [Number, Number] })
-	coordinates: [number, number]
+	@Field(() => Coordinates, { nullable: true })
+	@Prop({ type: Coordinates, _id: false })
+	coordinates: Coordinates
 }

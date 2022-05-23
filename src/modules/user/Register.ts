@@ -3,10 +3,10 @@ import { Arg, Mutation, Query, Resolver } from 'type-graphql'
 
 import bcrypt from 'bcryptjs'
 import { UserModel, User } from '@database/entity/Users'
-import RegisterInput from '@typings/inputs/Register.input'
+import RegisterInput from '@typings/inputs/User.Register.input'
 
 @Resolver()
-export default class RegisterUserResolver {
+export default class UserRegisterResolver {
 	// @UseMiddleware(isAuthenticated)
 	@Query(() => String)
 	async hello() {
@@ -29,6 +29,7 @@ export default class RegisterUserResolver {
 			password: hashedPassword,
 		})
 
+		await user.toObject()
 		// await sendEmail( email )
 
 		return user

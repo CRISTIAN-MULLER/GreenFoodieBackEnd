@@ -29,4 +29,7 @@ export default class AddressInput {
 
 	@Field(() => LocationInput, { nullable: true })
 	location: LocationInput
+
+	@Field({ nullable: true })
+	isFavorite: boolean
 }

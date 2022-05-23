@@ -6,10 +6,12 @@ import express from 'express'
 
 import cors from 'cors'
 
-import RegisterUserResolver from '@modules/user/Register'
-import LoginUserResolver from '@modules/user/Login'
-import LoggedUserResolver from '@modules/user/LoggedUser'
-import LogoutResolver from '@modules/user/Logout'
+import UserDeleteResolver from '@modules/user/Delete'
+import UserRegisterResolver from '@modules/user/Register'
+import UserLoginResolver from '@modules/user/Login'
+import UserLoggedResolver from '@modules/user/Logged'
+import UserLogoutResolver from '@modules/user/Logout'
+import UserUpdateResolver from '@modules/user/Update'
 import ProductResolver from '@modules/product/Product'
 import OrderResolver from '@modules/order/Order'
 import PaymentResolver from '@modules/payment/Payment'
@@ -27,13 +29,15 @@ const { NODE_ENV } = process.env
 const main = async () => {
 	const schema = await buildSchema({
 		resolvers: [
-			LoggedUserResolver,
-			LoginUserResolver,
-			LogoutResolver,
+			UserDeleteResolver,
+			UserLoggedResolver,
+			UserLoginResolver,
+			UserLogoutResolver,
+			UserUpdateResolver,
 			OrderResolver,
 			PaymentResolver,
 			ProductResolver,
-			RegisterUserResolver,
+			UserRegisterResolver,
 		],
 	})
 

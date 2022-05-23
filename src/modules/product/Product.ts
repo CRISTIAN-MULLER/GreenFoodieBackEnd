@@ -15,6 +15,7 @@ import Product, { ProductModel } from '@database/entity/Product'
 
 import ProductInput from '@typings/inputs/Product.input'
 import PaginationInput from '@typings/inputs/Pagination.input'
+import ProductFilter from '@typings/filters/Product.filter'
 
 @ObjectType()
 class ProductPaginated extends Paginate {
@@ -35,7 +36,11 @@ export default class ProductResolver {
 			nextPage,
 			previousPage,
 		}: PaginationInput,
+
+		@Arg('filter', { nullable: true }) filters: ProductFilter,
 	): Promise<ProductPaginated> {
+		const shouldApplyFilters = filters
+
 		const options: IPaginateOptions = {
 			sortField,
 			sortAscending,
@@ -43,8 +48,39 @@ export default class ProductResolver {
 			next: nextPage,
 			previous: previousPage,
 		}
+		const query: ProductFilter = {}
+		if (shouldApplyFilters) {
+			const { status, name, description, categories, _id } = shouldApplyFilters
 
-		const response = await ProductModel.findPaged(options)
+			if (_id !== undefined) {
+				query._id = {
+					$in: _id,
+				}
+			}
+
+			if (status !== undefined) {
+				query!.status = status
+			}
+			if (name !== undefined) {
+				query!.name = { $regex: new RegExp(name.toString(), 'i') }
+			}
+			if (description !== undefined) {
+				query!.description = { $regex: new RegExp(description.toString(), 'i') }
+			}
+
+			if (categories !== undefined) {
+				const match = {
+					$in: [/categorie/i],
+				}
+				match.$in.pop()
+				categories.forEach((categorie: string) => {
+					match.$in.push(new RegExp(categorie, 'i'))
+				})
+				query.categories = match
+			}
+		}
+
+		const response = await ProductModel.findPaged(options, query)
 
 		const products = response.docs
 		const hasNext = response.hasNext ? response.hasNext : false
@@ -73,8 +109,8 @@ export default class ProductResolver {
 			description: newProductData.description,
 			image: newProductData.image,
 			saleUnits: newProductData.saleUnits,
-			category: newProductData.category,
-			active: newProductData.active,
+			categories: newProductData.categories,
+			status: newProductData.status,
 		})
 		return product
 	}

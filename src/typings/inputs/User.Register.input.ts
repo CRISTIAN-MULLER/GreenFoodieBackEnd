@@ -4,7 +4,7 @@ import { emailExists } from '../../modules/user/emailExistsValidator'
 import AddressInput from './Address.input'
 
 @InputType()
-export default class RegisterInput {
+export default class UserRegisterInput {
 	@Field()
 	@Length(1, 40)
 	firstName: string

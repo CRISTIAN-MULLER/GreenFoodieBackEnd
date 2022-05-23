@@ -4,6 +4,7 @@ import { Field, ID, ObjectType } from 'type-graphql'
 import Address from './Address'
 import ForeignId from './ForeignId'
 import CardInfo from './CardInfo'
+import Product from './Product'
 
 @ObjectType()
 export class User {
@@ -25,11 +26,8 @@ export class User {
 	@IsDefined()
 	lastName: string
 
-	@Field()
-	fullName(): String {
-		const { firstName } = this
-
-		console.log(firstName)
+	@Field(() => String, { nullable: true })
+	fullName(): string {
 		return `${this.firstName} ${this.lastName}`
 	}
 
@@ -61,6 +59,10 @@ export class User {
 	@Field(() => [CardInfo], { nullable: true })
 	@Prop({ type: [CardInfo] })
 	paymentMethods: CardInfo[]
+
+	@Field(() => [String])
+	@Prop({ ref: () => Product })
+	favoriteProducts: mongoose.Types.ObjectId[]
 
 	@Prop({ default: false })
 	emailConfirmed: boolean

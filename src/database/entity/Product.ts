@@ -3,6 +3,7 @@ import paginationPlugin, { PaginateModel } from 'typegoose-cursor-pagination'
 import { getModelForClass, mongoose, Prop, plugin } from '@typegoose/typegoose'
 import { IsDefined } from 'class-validator'
 import { Field, ID, ObjectType } from 'type-graphql'
+
 import SaleUnit from './SaleUnit'
 
 @plugin(paginationPlugin)
@@ -17,7 +18,7 @@ export default class Product {
 	@IsDefined()
 	name: string
 
-	@Field({ nullable: true })
+	@Field()
 	@Prop()
 	@IsDefined()
 	description: string
@@ -30,13 +31,13 @@ export default class Product {
 	@Prop({ type: [SaleUnit] })
 	saleUnits: SaleUnit[]
 
-	@Field({ nullable: true })
+	@Field(() => [String], { nullable: true })
 	@Prop()
-	category: string
+	categories: string[]
 
 	@Field()
-	@Prop({ default: true })
-	active: boolean = true
+	@Prop({ type: String, default: 'ativo' })
+	status: string
 }
 
 export const ProductModel = getModelForClass(Product) as PaginateModel<

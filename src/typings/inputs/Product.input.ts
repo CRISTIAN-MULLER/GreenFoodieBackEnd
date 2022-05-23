@@ -1,8 +1,12 @@
+import ProductFilter from '@typings/filters/Product.filter'
 import { Field, InputType } from 'type-graphql'
 import SaleUnitInput from './SaleUnit.input'
 
 @InputType()
 export default class ProductInput {
+	@Field({ nullable: true })
+	filters?: ProductFilter
+
 	@Field()
 	name: string
 
@@ -15,9 +19,9 @@ export default class ProductInput {
 	@Field(() => [SaleUnitInput])
 	saleUnits: SaleUnitInput[]
 
-	@Field()
-	category: string
+	@Field(() => [String])
+	categories: string[]
 
-	@Field()
-	active: boolean
+	@Field(() => String, { nullable: true })
+	status: string
 }
