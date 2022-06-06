@@ -4,7 +4,7 @@ import { Field, ID, InputType } from 'type-graphql'
 import AddressInput from './Address.input'
 
 import OrderItemInput from './OrderItem.input'
-import PaymentMethodInput from './PaymentMethod.input'
+import { PaymentMethodInput } from './PaymentMethod.input'
 
 @InputType()
 export default class OrderInput {

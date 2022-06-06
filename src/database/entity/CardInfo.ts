@@ -27,4 +27,8 @@ export default class CardInfo {
 	@Field({ nullable: true })
 	@Prop()
 	cvv: string
+
+	@Field({ nullable: true })
+	@Prop()
+	isFavorite: boolean
 }

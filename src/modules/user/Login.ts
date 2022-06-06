@@ -1,7 +1,7 @@
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
 
 import bcrypt from 'bcryptjs'
-import { User, UserModel } from '@database/entity/Users'
+import User, { UserModel } from '@database/entity/Users'
 import LoginInput from '@typings/inputs/Login.input'
 import ForeignLoginInput from '@typings/inputs/ForeignLogin.input'
 import Context from '@typings/interfaces/Context.interface'

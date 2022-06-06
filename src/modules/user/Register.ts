@@ -2,7 +2,7 @@
 import { Arg, Mutation, Query, Resolver } from 'type-graphql'
 
 import bcrypt from 'bcryptjs'
-import { UserModel, User } from '@database/entity/Users'
+import User, { UserModel } from '@database/entity/Users'
 import RegisterInput from '@typings/inputs/User.Register.input'
 
 @Resolver()

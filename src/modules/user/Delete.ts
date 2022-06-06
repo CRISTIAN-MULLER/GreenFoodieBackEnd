@@ -1,7 +1,7 @@
 // import { isAuthenticated } from './../../middlewares/isAuthenticated'
 import { Arg, Mutation, Resolver } from 'type-graphql'
 
-import { UserModel, User } from '@database/entity/Users'
+import User, { UserModel } from '@database/entity/Users'
 import UpdateInput from '@typings/inputs/User.Update.input'
 
 @Resolver()

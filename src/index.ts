@@ -15,6 +15,7 @@ import UserUpdateResolver from '@modules/user/Update'
 import ProductResolver from '@modules/product/Product'
 import OrderResolver from '@modules/order/Order'
 import PaymentResolver from '@modules/payment/Payment'
+import UserListResolver from '@modules/user/List'
 
 const { log } = require('mercedlogger')
 const session = require('express-session')
@@ -30,6 +31,7 @@ const main = async () => {
 	const schema = await buildSchema({
 		resolvers: [
 			UserDeleteResolver,
+			UserListResolver,
 			UserLoggedResolver,
 			UserLoginResolver,
 			UserLogoutResolver,

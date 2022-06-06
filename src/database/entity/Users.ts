@@ -1,4 +1,5 @@
-import { getModelForClass, mongoose, Prop } from '@typegoose/typegoose'
+import paginationPlugin, { PaginateModel } from 'typegoose-cursor-pagination'
+import { getModelForClass, mongoose, plugin, Prop } from '@typegoose/typegoose'
 import { IsDefined } from 'class-validator'
 import { Field, ID, ObjectType } from 'type-graphql'
 import Address from './Address'
@@ -6,8 +7,9 @@ import ForeignId from './ForeignId'
 import CardInfo from './CardInfo'
 import Product from './Product'
 
+@plugin(paginationPlugin)
 @ObjectType()
-export class User {
+export default class User {
 	@Field(() => ID)
 	@Prop()
 	_id: mongoose.Types.ObjectId
@@ -68,4 +70,6 @@ export class User {
 	emailConfirmed: boolean
 }
 
-export const UserModel = getModelForClass(User)
+export const UserModel = getModelForClass(User, {
+	schemaOptions: { timestamps: true },
+}) as PaginateModel<User, typeof User>

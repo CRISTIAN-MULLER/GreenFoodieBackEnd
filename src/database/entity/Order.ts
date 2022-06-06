@@ -7,19 +7,28 @@ import {
 	plugin,
 	Ref,
 } from '@typegoose/typegoose'
+import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses'
 import { IsDefined } from 'class-validator'
 import { Field, ID, ObjectType } from 'type-graphql'
 import { ORDER_ORIGIN, ORDER_STATUS } from '@typings/enums/Order.enum'
-import { User } from './Users'
+import User from './Users'
 import OrderItem from './OrderItem'
 import Address from './Address'
 import PaymentMethod from './PaymentMethod'
 
 @plugin(paginationPlugin)
 @ObjectType()
-export default class Order {
+export default class Order extends TimeStamps {
 	@Field(() => ID)
 	_id: mongoose.Types.ObjectId
+
+	@Field()
+	@Prop()
+	createdAt: Date
+
+	@Field()
+	@Prop()
+	updatedAt: Date
 
 	@Field()
 	@Prop()
@@ -67,7 +76,6 @@ export default class Order {
 	observation: string
 }
 
-export const OrderModel = getModelForClass(Order) as PaginateModel<
-	Order,
-	typeof Order
->
+export const OrderModel = getModelForClass(Order, {
+	schemaOptions: { timestamps: true },
+}) as PaginateModel<Order, typeof Order>

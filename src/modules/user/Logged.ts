@@ -1,6 +1,6 @@
 import { Ctx, Query, Resolver } from 'type-graphql'
 import Context from '@typings/interfaces/Context.interface'
-import { User, UserModel } from '@database/entity/Users'
+import User, { UserModel } from '@database/entity/Users'
 
 // import { isAuthenticated } from 'src/middlewares/isAuthenticated'
 
