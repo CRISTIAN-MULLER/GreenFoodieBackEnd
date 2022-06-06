@@ -11,7 +11,6 @@ import Product from './Product'
 @ObjectType()
 export default class User {
 	@Field(() => ID)
-	@Prop()
 	_id: mongoose.Types.ObjectId
 
 	@Field(() => ForeignId, { nullable: true })

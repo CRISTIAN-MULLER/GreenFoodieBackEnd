@@ -14,7 +14,12 @@ export default class UserRegisterInput {
 	lastName: string
 
 	@Field()
-	@IsEmail()
+	@IsEmail(
+		{},
+		{
+			message: 'Email precisa ser um valor válido.',
+		},
+	)
 	@emailExists({ message: 'Email já está em uso' })
 	email: string
 
@@ -23,6 +28,9 @@ export default class UserRegisterInput {
 
 	@Field({ nullable: true })
 	phone?: string
+
+	@Field({ nullable: true })
+	role?: string
 
 	@Field(() => [AddressInput], { nullable: true })
 	addresses: AddressInput[]

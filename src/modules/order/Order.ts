@@ -7,6 +7,7 @@ import PaginationInput from '@typings/inputs/Pagination.input'
 import Order, { OrderModel } from '@database/entity/Order'
 import OrderInput from '@typings/inputs/Order.input'
 import autoIncrement from '@middlewares/autoIncrement'
+import OrderFilter from '@typings/filters/Order.filter'
 
 @ObjectType()
 class OrderPaginated extends Paginate {
@@ -27,7 +28,10 @@ export default class OrderResolver {
 			nextPage,
 			previousPage,
 		}: PaginationInput,
+		@Arg('filter', { nullable: true }) filters: OrderFilter,
 	): Promise<OrderPaginated> {
+		const shouldApplyFilters = filters
+
 		const options: IPaginateOptions = {
 			sortField,
 			sortAscending,
@@ -36,7 +40,18 @@ export default class OrderResolver {
 			previous: previousPage,
 		}
 
-		const response = await OrderModel.findPaged(options)
+		const query: OrderFilter = {}
+		if (shouldApplyFilters) {
+			const { _id } = shouldApplyFilters
+
+			if (_id !== undefined) {
+				query._id = {
+					$in: _id,
+				}
+			}
+		}
+
+		const response = await OrderModel.findPaged(options, query)
 
 		const orders = response.docs
 		const hasNext = response.hasNext ? response.hasNext : false

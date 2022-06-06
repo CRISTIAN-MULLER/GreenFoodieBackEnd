@@ -29,6 +29,8 @@ export default class UserRegisterResolver {
 			password: hashedPassword,
 		})
 
+		console.warn(user)
+
 		await user.toObject()
 		// await sendEmail( email )
 
