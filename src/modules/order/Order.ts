@@ -42,11 +42,17 @@ export default class OrderResolver {
 
 		const query: OrderFilter = {}
 		if (shouldApplyFilters) {
-			const { _id } = shouldApplyFilters
+			const { _id, customerId } = shouldApplyFilters
 
 			if (_id !== undefined) {
 				query._id = {
 					$in: _id,
+				}
+			}
+
+			if (customerId !== undefined) {
+				query.customerId = {
+					$in: customerId,
 				}
 			}
 		}

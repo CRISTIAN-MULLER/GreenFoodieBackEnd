@@ -92,4 +92,8 @@ export default class PaymentMethod {
 		default: PAYMENT_STATUS.TO_PAY,
 	})
 	paymentStatus: PAYMENT_STATUS
+
+	@Field()
+	@Prop()
+	totalPrice: number
 }

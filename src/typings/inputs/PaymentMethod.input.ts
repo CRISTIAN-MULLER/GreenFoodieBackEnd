@@ -65,4 +65,7 @@ export class PaymentMethodInput {
 
 	@Field(() => PAYMENT_STATUS)
 	paymentStatus: PAYMENT_STATUS
+
+	@Field()
+	totalPrice: number
 }
