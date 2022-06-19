@@ -9,7 +9,7 @@ export default class UserLoggedResolver {
 	// @UseMiddleware(isAuthenticated)
 	@Query(() => User, { nullable: true })
 	async getLoggedUser(@Ctx() ctx: Context): Promise<User | null | undefined> {
-		const user = (await UserModel.findOne(
+		const user = (await UserModel.findById(
 			ctx.req.session!.userId,
 		).lean()) as User
 		if (!user) return null

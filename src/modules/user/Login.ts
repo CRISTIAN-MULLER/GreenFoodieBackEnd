@@ -17,32 +17,70 @@ export default class UserLoginResolver {
 
 		const isValid = user && (await bcrypt.compare(password, user.password))
 		if (!isValid) return null
-
 		ctx.req.session!.userId = user._id
-
 		return user
 	}
 
 	@Mutation(() => User, { nullable: true })
 	async foreignLogin(
-		@Arg('data') { email, foreignId, provider }: ForeignLoginInput,
+		@Arg('data')
+		{
+			firstName,
+			lastName,
+			email,
+			foreignId,
+			profilePicture,
+		}: ForeignLoginInput,
 		@Ctx() ctx: Context,
 	): Promise<User | null> {
-		const user = (await UserModel.findOne({
+		let user = (await UserModel.findOne({
 			email,
 		}).lean()) as User
 
-		const isValid =
-			user &&
-			user.foreignIds.map(
-				(foreign) =>
-					foreign.userId === foreignId && foreign.provider === provider,
-			)
+		if (!user) {
+			const newUser = await UserModel.create({
+				firstName,
+				lastName,
+				email,
+				profilePicture,
+				foreignIds: [foreignId],
+			})
+			await newUser.toObject()
+			// await sendEmail( email )
+			user = newUser
+		}
 
-		if (!isValid) return null
+		if (user) {
+			let foreignIds
 
+			if (!user.foreignIds) {
+				foreignIds = []
+				foreignIds.push(foreignId)
+			}
+
+			if (user.foreignIds) {
+				foreignIds = user.foreignIds?.filter(
+					(foreign) => foreign.provider !== foreignId.provider,
+				)
+				foreignIds.push(foreignId)
+			}
+			const returnedUser = await UserModel.findOneAndUpdate(
+				{ _id: user._id },
+				{
+					firstName,
+					lastName,
+					email,
+					profilePicture,
+					foreignIds,
+				},
+				{
+					new: true,
+				},
+			).lean()
+			if (!returnedUser) return null
+			user = returnedUser
+		}
 		ctx.req.session!.userId = user._id
-
 		return user
 	}
 }

@@ -81,7 +81,7 @@ class UserPaymentMethod {
 export default class PaymentMethod {
 	@Field()
 	@Prop({
-		type: Object,
+		type: UserPaymentMethod,
 	})
 	paymentMethod: UserPaymentMethod
 

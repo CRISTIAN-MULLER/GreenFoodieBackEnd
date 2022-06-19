@@ -32,7 +32,7 @@ export default class Product {
 	saleUnits: SaleUnit[]
 
 	@Field(() => [String], { nullable: true })
-	@Prop()
+	@Prop({ type: [String] })
 	categories: string[]
 
 	@Field()

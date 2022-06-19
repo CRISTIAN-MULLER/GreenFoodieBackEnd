@@ -55,7 +55,7 @@ const main = async () => {
 
 	const store = new MongoDBStore({
 		uri: MONGO_URL,
-		collection: 'userSessions',
+		collection: 'sessions',
 	})
 
 	// Catch errors

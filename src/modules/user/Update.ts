@@ -63,6 +63,10 @@ export default class UserUpdateResolver {
 			query.paymentMethods = user.paymentMethods
 		}
 
+		if (UserData.favoriteProducts !== undefined) {
+			query.favoriteProducts = UserData.favoriteProducts
+		}
+
 		const returnedUser = await UserModel.findOneAndUpdate(
 			{ _id: UserData.UserId },
 			query,

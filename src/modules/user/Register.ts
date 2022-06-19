@@ -28,12 +28,8 @@ export default class UserRegisterResolver {
 			addresses,
 			password: hashedPassword,
 		})
-
-		console.warn(user)
-
 		await user.toObject()
 		// await sendEmail( email )
-
 		return user
 	}
 }

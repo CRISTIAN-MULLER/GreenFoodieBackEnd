@@ -13,8 +13,8 @@ export default class User {
 	@Field(() => ID)
 	_id: mongoose.Types.ObjectId
 
-	@Field(() => ForeignId, { nullable: true })
-	@Prop({ type: ForeignId })
+	@Field(() => [ForeignId], { nullable: true })
+	@Prop({ type: [ForeignId], _id: false })
 	foreignIds: ForeignId[]
 
 	@Field({ nullable: true })
