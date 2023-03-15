@@ -1,10 +1,15 @@
-import { Field, InputType } from 'type-graphql'
+import { IsNotEmpty, IsString } from 'class-validator';
+import { Field, InputType } from 'type-graphql';
 
 @InputType()
 export default class LoginInput {
 	@Field()
-	email: string
+	@IsString()
+	@IsNotEmpty()
+	email: string;
 
 	@Field()
-	password: string
+	@IsString()
+	@IsNotEmpty()
+	password: string;
 }

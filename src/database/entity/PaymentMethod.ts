@@ -1,99 +1,99 @@
-import { Prop } from '@typegoose/typegoose'
-import { PAYMENT_STATUS } from '@typings/enums/Payment.enum'
-import { Field, ObjectType } from 'type-graphql'
+import { Prop } from '@typegoose/typegoose';
+import { PAYMENT_STATUS } from '@typings/enums/Payment.enum';
+import { Field, ObjectType } from 'type-graphql';
 
 @ObjectType()
 class App {
 	@Field({ nullable: true })
 	@Prop()
-	cardNumber: string
+	cardNumber: string;
 
 	@Field({ nullable: true })
 	@Prop()
-	cardName: string
+	cardName: string;
 
 	@Field({ nullable: true })
 	@Prop()
-	cardHolderName: string
+	cardHolderName: string;
 
 	@Field({ nullable: true })
 	@Prop()
-	expirationDate: string
+	expirationDate: string;
 
 	@Field({ nullable: true })
 	@Prop()
-	cardBrand: string
+	cardBrand: string;
 
 	@Field({ nullable: true })
 	@Prop()
-	cvv: string
+	cvv: string;
 
 	@Field()
 	@Prop({ default: false })
-	isFavorite: boolean
+	isFavorite: boolean;
 }
 
 @ObjectType()
 class UserCard {
 	@Field({ nullable: true })
 	@Prop()
-	cardBrand?: string
+	cardBrand?: string;
 
 	@Field({ nullable: true })
 	@Prop()
-	type?: string
+	type?: string;
 }
 
 @ObjectType()
 class UserCash {
 	@Field({ nullable: true })
 	@Prop()
-	change?: string
+	change?: string;
 }
 
 @ObjectType()
 class Delivery {
 	@Field({ nullable: true })
 	@Prop()
-	card?: UserCard
+	card?: UserCard;
 
 	@Field({ nullable: true })
 	@Prop()
-	cash?: UserCash
+	cash?: UserCash;
 }
 
 @ObjectType()
 class UserPaymentMethod {
 	@Field({ nullable: true })
 	@Prop({
-		type: App,
+		type: App
 	})
-	app?: App
+	app?: App;
 
 	@Field({ nullable: true })
 	@Prop({
-		type: Delivery,
+		type: Delivery
 	})
-	delivery?: Delivery
+	delivery?: Delivery;
 }
 
 @ObjectType()
 export default class PaymentMethod {
 	@Field()
 	@Prop({
-		type: UserPaymentMethod,
+		type: UserPaymentMethod
 	})
-	paymentMethod: UserPaymentMethod
+	paymentMethod: UserPaymentMethod;
 
-	@Field()
+	@Field(() => PAYMENT_STATUS)
 	@Prop({
 		type: String,
 		enum: PAYMENT_STATUS,
-		default: PAYMENT_STATUS.TO_PAY,
+		default: PAYMENT_STATUS.TO_PAY
 	})
-	paymentStatus: PAYMENT_STATUS
+	paymentStatus: PAYMENT_STATUS;
 
 	@Field()
 	@Prop()
-	totalPrice: number
+	totalPrice: number;
 }

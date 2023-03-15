@@ -1,31 +1,32 @@
-import 'dotenv/config'
-import 'reflect-metadata'
-import { ApolloServer } from 'apollo-server-express'
-import { buildSchema } from 'type-graphql'
-import express from 'express'
+import 'dotenv/config';
+import 'reflect-metadata';
+import { ApolloServer } from 'apollo-server-express';
+import { buildSchema } from 'type-graphql';
+import express from 'express';
 
-import cors from 'cors'
+import cors from 'cors';
 
-import UserDeleteResolver from '@modules/user/Delete'
-import UserRegisterResolver from '@modules/user/Register'
-import UserLoginResolver from '@modules/user/Login'
-import UserLoggedResolver from '@modules/user/Logged'
-import UserLogoutResolver from '@modules/user/Logout'
-import UserUpdateResolver from '@modules/user/Update'
-import ProductResolver from '@modules/product/Product'
-import OrderResolver from '@modules/order/Order'
-import PaymentResolver from '@modules/payment/Payment'
-import UserListResolver from '@modules/user/List'
+import UserDeleteResolver from '@modules/user/Delete';
+import UserRegisterResolver from '@modules/user/Register';
+import UserLoginResolver from '@modules/user/Login';
+import UserLoggedResolver from '@modules/user/Logged';
+import UserLogoutResolver from '@modules/user/Logout';
+import UserUpdateResolver from '@modules/user/Update';
+import ProductResolver from '@modules/product/Product';
+import OrderResolver from '@modules/order/Order';
+import PaymentResolver from '@modules/payment/Payment';
+import UserListResolver from '@modules/user/List';
+import mongoose from 'mongoose';
+import session from 'express-session';
 
-const { log } = require('mercedlogger')
-const session = require('express-session')
-const MongoDBStore = require('connect-mongodb-session')(session)
-const mongoose = require('mongoose')
+const { log } = require('mercedlogger');
 
-const { MONGO_URL } = process.env
-const { PORT } = process.env || 4000
-const { SESSIONS_SECRET } = process.env
-const { NODE_ENV } = process.env
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+const { MONGO_URL } = process.env;
+const { PORT } = process.env || 4000;
+const { SESSIONS_SECRET } = process.env;
+const { NODE_ENV } = process.env;
 
 const main = async () => {
 	const schema = await buildSchema({
@@ -39,11 +40,11 @@ const main = async () => {
 			OrderResolver,
 			PaymentResolver,
 			ProductResolver,
-			UserRegisterResolver,
-		],
-	})
+			UserRegisterResolver
+		]
+	});
 
-	mongoose.connect(MONGO_URL!)
+	mongoose.connect(MONGO_URL!);
 
 	mongoose.connection
 		// Event for When Connection Opens
@@ -51,40 +52,40 @@ const main = async () => {
 		// Event for When Connection Closes
 		.on('close', () => log.red('STATUS', 'Disconnected from Mongo'))
 		// Event for Connection Errors
-		.on('error', (error: any) => log.red('ERROR', error))
+		.on('error', (error: any) => log.red('ERROR', error));
 
 	const store = new MongoDBStore({
 		uri: MONGO_URL,
-		collection: 'sessions',
-	})
+		collection: 'sessions'
+	});
 
 	// Catch errors
 	store.on('error', (error: any) => {
-		console.log(error)
-	})
+		console.log(error);
+	});
 
 	const apolloServer = new ApolloServer({
 		schema,
-		context: ({ req, res }: any) => ({ req, res }),
-	})
+		context: ({ req, res }: any) => ({ req, res })
+	});
 
-	const app = await express()
+	const app = await express();
 
 	app.use(
 		session({
-			secret: SESSIONS_SECRET,
+			secret: SESSIONS_SECRET || 'secret',
 			saveUninitialized: false,
 			store,
 			cookie: {
 				maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
 				httpOnly: true,
 				sameSite: 'none',
-				secure: true,
+				secure: true
 			},
 			name: 'qid',
-			resave: false,
-		}),
-	)
+			resave: false
+		})
+	);
 
 	app.use(
 		cors({
@@ -92,18 +93,17 @@ const main = async () => {
 			origin: [
 				'http://localhost:4000',
 				'https://studio.apollographql.com',
-				'https://localhost:4000',
-				'http://192.168.100.3',
-			],
-		}),
-	)
-	app.set('trust proxy', NODE_ENV !== 'production')
+				'https://localhost:4000'
+			]
+		})
+	);
+	app.set('trust proxy', NODE_ENV !== 'production');
 
-	await apolloServer.start()
-	apolloServer.applyMiddleware({ app, cors: false })
+	await apolloServer.start();
+	apolloServer.applyMiddleware({ app, cors: false });
 
 	app.listen(PORT, () => {
-		console.log(`Listening on port http://localhost:${PORT}/graphql`)
-	})
-}
-main()
+		console.log(`Listening on port http://localhost:${PORT}/graphql`);
+	});
+};
+main();
